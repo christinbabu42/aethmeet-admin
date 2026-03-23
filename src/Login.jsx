@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
-export default function Login({ onLoginSuccess }) {
+// Note: Replace with your actual Client ID from Google Cloud Console
+const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com";
+
+function LoginContent({ onLoginSuccess }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Reference for the App Download section
@@ -9,8 +12,12 @@ export default function Login({ onLoginSuccess }) {
 
   // This hook allows us to trigger the login popup programmatically
   const triggerDirectLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => onLoginSuccess(tokenResponse),
-    onError: () => console.log('Login Failed'),
+    onSuccess: (tokenResponse) => {
+      console.log('Login Success:', tokenResponse);
+      onLoginSuccess(tokenResponse);
+    },
+    onError: (error) => console.log('Login Failed:', error),
+    // flow: 'implicit' is default, ensures a popup opens
   });
 
   const handleAdminClick = (e) => {
@@ -94,27 +101,23 @@ export default function Login({ onLoginSuccess }) {
 
         <div className="relative z-10 w-full max-w-4xl flex flex-col items-center text-center">
           {/* Brand & Marketing Section */}
-<div className="relative mb-8">
-  
-  {/* Soft glow / fade background */}
-  <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-pink-500/40 via-purple-500/30 to-pink-500/40"></div>
+          <div className="relative mb-8">
+            <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-pink-500/40 via-purple-500/30 to-pink-500/40"></div>
+            <img 
+              src="/logo1.png" 
+              alt="Luvios Logo" 
+              className="relative h-24 w-24 object-contain opacity-0 animate-[fadeIn_2s_ease-in-out_forwards]"
+            />
+          </div>
 
-  <img 
-    src="/logo1.png" 
-    alt="Luvios Logo" 
-    className="relative h-24 w-24 object-contain opacity-0 animate-[fadeIn_2s_ease-in-out_forwards]"
-  />
-
-</div>
-
-<style>
-{`
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-`}
-</style>
+          <style>
+            {`
+            @keyframes fadeIn {
+              from { opacity: 0; transform: scale(0.9); }
+              to { opacity: 1; transform: scale(1); }
+            }
+            `}
+          </style>
           
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
             Where meaningful <br />
@@ -158,5 +161,14 @@ export default function Login({ onLoginSuccess }) {
         </p>
       </footer>
     </div>
+  );
+}
+
+// Wrapper component to provide Google Context
+export default function Login(props) {
+  return (
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <LoginContent {...props} />
+    </GoogleOAuthProvider>
   );
 }
