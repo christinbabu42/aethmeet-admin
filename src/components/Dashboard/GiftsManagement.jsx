@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/axios";
 
+// Dynamic API Base URL detection
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 export default function GiftManagement() {
   const [gifts, setGifts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState({ name: "", price: "", image: "" });
 
-const loadGifts = async () => {
-  try {
-    setLoading(true);
-    const res = await api.get("/admin/gifts");
-    if (res.data.success) {
-      setGifts(res.data.data);
+  const loadGifts = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get("/admin/gifts");
+      if (res.data.success) {
+        setGifts(res.data.data);
+      }
+    } catch (err) {
+      // Improved error logging for production debugging
+      console.error("Gift fetch failed:", err.response?.data || err.message);
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error("Gift fetch failed:", err.response?.data);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   useEffect(() => {
     loadGifts();
@@ -110,6 +114,11 @@ const loadGifts = async () => {
 
       {/* Table Section */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        {loading && (
+          <div className="p-10 text-center text-gray-400 font-medium animate-pulse">
+            Loading gifts from store...
+          </div>
+        )}
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
@@ -124,15 +133,14 @@ const loadGifts = async () => {
               <tr key={gift._id} className="hover:bg-indigo-50/30 transition-colors group">
                 <td className="px-6 py-4">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200 shadow-inner">
-                    {/* Fixed Image Logic: No more broken via.placeholder links */}
                     {gift.image ? (
                       <img 
-                        src={`http://localhost:5000/public/gifts/${gift.image}`} 
-                        alt="" 
+                        src={`${API_BASE}/public/gifts/${gift.image}`} 
+                        alt={gift.name} 
                         className="w-full h-full object-contain"
                         onError={(e) => {
                           e.target.onerror = null; 
-                          e.target.parentElement.innerHTML = '<span class="text-xl">🎁</span>';
+                          e.target.src = 'https://via.placeholder.com/50?text=🎁';
                         }}
                       />
                     ) : (

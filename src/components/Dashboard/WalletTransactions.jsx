@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// --- Production Configuration ---
+// This uses the environment variable if present, otherwise falls back to localhost for development
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+// Create a configured axios instance for the wallet admin routes
+const walletApi = axios.create({
+  baseURL: `${API_BASE}/api/wallet/admin`,
+});
+
 const TransactionPlaceholder = ({ title, icon }) => (
   <div className="flex flex-col items-center justify-center h-full text-center py-20 bg-white rounded-3xl border-2 border-dashed border-gray-200">
     <span className="text-8xl mb-6">{icon}</span>
@@ -33,12 +42,14 @@ export default function AdminTransactions() {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/wallet/admin/transactions');
+      // Updated to use the dynamic walletApi instance
+      const res = await walletApi.get('/transactions');
       if (res.data.success) {
         setTransactions(res.data.data);
       }
     } catch (err) {
-      console.error("❌ Fetch Error:", err.message);
+      // Improved error logging for production
+      console.error("❌ Fetch Error:", err.response?.data || err.message);
     } finally {
       setLoading(false);
     }
@@ -47,11 +58,13 @@ export default function AdminTransactions() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this record?")) return;
     try {
-      const res = await axios.delete(`http://localhost:5000/api/wallet/admin/transactions/${id}`);
+      // Updated to use the dynamic walletApi instance
+      const res = await walletApi.delete(`/transactions/${id}`);
       if (res.data.success) {
         setTransactions(prev => prev.filter(tx => tx._id !== id));
       }
     } catch (err) {
+      console.error("Delete Error:", err.response?.data || err.message);
       alert("Failed to delete.");
     }
   };
@@ -142,7 +155,7 @@ export default function AdminTransactions() {
         {/* Filter Toolbar */}
         <div className="flex flex-wrap items-center gap-6 mb-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
           
-          {/* CATEGORY SELECTOR - Updated with your 3 options */}
+          {/* CATEGORY SELECTOR */}
           <div className="flex flex-col">
             <label className="text-[10px] font-bold text-slate-400 uppercase ml-1 mb-1">Transaction Source</label>
             <select 
@@ -206,8 +219,15 @@ export default function AdminTransactions() {
                     <tr key={tx._id} className="hover:bg-slate-50/80 transition-colors">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500 uppercase">
-                            {tx.userId?.nickname?.charAt(0) || 'U'}
+                          <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500 uppercase overflow-hidden">
+                            {tx.userId?.profilePic ? (
+                              <img 
+                                src={`${API_BASE}/public/uploads/${tx.userId.profilePic}`} 
+                                alt=""
+                                className="w-full h-full object-cover"
+                                onError={(e) => e.target.style.display = 'none'}
+                              />
+                            ) : tx.userId?.nickname?.charAt(0) || 'U'}
                           </div>
                           <div>
                             <p className="font-bold text-slate-800 leading-none">{tx.userId?.nickname || 'Unknown'}</p>

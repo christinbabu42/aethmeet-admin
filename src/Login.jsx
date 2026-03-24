@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useGoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 // Note: Replace with your actual Client ID from Google Cloud Console
-const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "647678003424-sct1je6u5s8fq497hcd96ercqjmtr5f3.apps.googleusercontent.com";
 
 function LoginContent({ onLoginSuccess }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
