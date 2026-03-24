@@ -17,39 +17,38 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Check for existing session on mount
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
     if (token) {
+      // In a real production app, you might want to call a 
+      // /api/auth/me endpoint here to verify the token is still valid
       setIsAdmin(true);
     }
     setLoading(false);
   }, []);
 
-  const handleLoginSuccess = async (googleResponse) => {
-    try {
-      const res = await axios.post(
-        "https://api.aethmeet.com/api/auth/google",
-        {
-          idToken: googleResponse.credential,
-          isAdminLogin: true, // 👈 IMPORTANT
-        }
-      );
-
-      if (res.data.isAdmin) {
-        localStorage.setItem("adminToken", res.data.token);
-        setIsAdmin(true);
-      } else {
-        alert("Access Denied: You are not an admin.");
+const handleLoginSuccess = async (googleResponse) => {
+  try {
+    const res = await axios.post(
+      "https://api.aethmeet.com/api/auth/google",
+      {
+        accessToken: googleResponse.access_token, // <--- send accessToken
+        isAdminLogin: true
       }
-    } catch (err) {
-      console.error("Login failed", err);
+    );
 
-      const message =
-        err.response?.data?.message || "Login failed. Please try again.";
-
-      alert(message); // ✅ shows backend message
+    if (res.data.isAdmin && res.data.token) {
+      localStorage.setItem("adminToken", res.data.token);
+      setIsAdmin(true);
+    } else {
+      alert("Access Denied: You are not an admin.");
     }
-  };
+  } catch (err) {
+    console.error("Login failed", err);
+    alert(err.response?.data?.message || "Authentication failed");
+  }
+};
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
@@ -58,8 +57,11 @@ export default function App() {
 
   if (loading)
     return (
-      <div className="flex h-screen items-center justify-center">
-        Loading...
+      <div className="flex h-screen items-center justify-center bg-slate-50">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="font-bold text-slate-600">Verifying Session...</p>
+        </div>
       </div>
     );
 

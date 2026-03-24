@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-// Use environment variable, fallback to localhost for dev
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
-
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 const api = axios.create({
-  baseURL: API_BASE, // dynamic backend URL
+  baseURL: `${API_BASE}/api`, // ✅ always append /api
 });
 
 // Automatically add token to headers
