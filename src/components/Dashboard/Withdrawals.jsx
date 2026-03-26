@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api/axios";
 
-// UI ONLY – backend remains the source of truth for actual payouts
-const DISPLAY_RATE = 0.62; 
+
 
 export default function Withdrawal() {
   const [withdrawals, setWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
 
+  const [rate, setRate] = useState(0);
+
+
   // Fetch pending withdrawals on mount
-  useEffect(() => {
-    fetchWithdrawals();
-  }, []);
+useEffect(() => {
+  fetchWithdrawals();
+
+  api.get("/api/config").then(res => {
+    setRate(res.data.hostCoinValue); // ✅ from DB
+  });
+}, []);
 
   const fetchWithdrawals = async () => {
     try {
@@ -113,7 +119,7 @@ export default function Withdrawal() {
                     <span style={styles.coinText}>{item.coins.toLocaleString()} Coins</span>
                   </div>
                   <div style={styles.rupeeValue}>
-                    ₹ {(item.coins * DISPLAY_RATE).toFixed(2)}
+                    ₹ {item.rupees.toFixed(2)}
                   </div>
                 </div>
               </div>
