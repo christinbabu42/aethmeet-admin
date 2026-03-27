@@ -113,11 +113,16 @@ export default function Withdrawal() {
             <div key={item.withdrawalId} style={styles.card}>
               <div style={styles.userInfo}>
                 <div style={styles.avatar}>
-                  {item.name ? item.name.substring(0, 2).toUpperCase() : "UR"}
+                  {item.name ? item.name.substring(0, 2).toUpperCase() : "??"}
                 </div>
                 <div>
                   <p style={styles.userLabel}>USER INFO</p>
-                  <p style={styles.userIdText}>{item.name || "N/A"}</p>
+                  <p style={styles.userIdText}>{item.name || "Unknown User"}</p>
+                  
+                  {/* ✅ Show Country Name or Code */}
+                  <p style={{ fontSize: '11px', color: '#64748b', margin: '2px 0' }}>
+                    📍 {item.countryName || item.country || "N/A"}
+                  </p>
                   
                   {/* Status Badge */}
                   <span style={{
@@ -138,7 +143,7 @@ export default function Withdrawal() {
                   {item.bankDetails?.accountNumber && (
                     <div style={styles.bankBox}>
                       <p style={styles.paymentText}><strong>A/C:</strong> {item.bankDetails.accountNumber}</p>
-                      <p style={styles.paymentText}><strong>IFSC:</strong> {item.bankDetails.ifsc}</p>
+                      <p style={styles.paymentText}><strong>IFSC:</strong> {item.bankDetails.ifsc || "N/A"}</p>
                     </div>
                   )}
 
@@ -160,7 +165,6 @@ export default function Withdrawal() {
               </div>
               
               <div style={styles.buttonGroup}>
-                {/* FIXED: All button callbacks now pass item.withdrawalId */}
                 {item.status === "pending" && (
                   <button 
                     onClick={() => handleAction('approve', item.withdrawalId, "Move this to processing for manual payout?")}
@@ -218,5 +222,7 @@ const styles = {
   approveBtn: { backgroundColor: "#22c55e", color: "white", border: "none", padding: "10px 15px", borderRadius: "8px", cursor: "pointer", fontWeight: "600" },
   paidBtn: { backgroundColor: "#4f46e5", color: "white", border: "none", padding: "10px 15px", borderRadius: "8px", cursor: "pointer", fontWeight: "600" },
   rejectBtn: { backgroundColor: "#ef4444", color: "white", border: "none", padding: "10px 15px", borderRadius: "8px", cursor: "pointer", fontWeight: "600" },
-  spinner: { width: "30px", height: "30px", border: "3px solid #e2e8f0", borderTop: "3px solid #4f46e5", borderRadius: "50%", margin: "0 auto 15px auto", animation: "spin 1s linear infinite" }
+  spinner: { width: "30px", height: "30px", border: "3px solid #e2e8f0", borderTop: "3px solid #4f46e5", borderRadius: "50%", margin: "0 auto 15px auto", animation: "spin 1s linear infinite" },
+  centerMessage: { textAlign: "center", marginTop: "50px", color: "#64748b" },
+  emptyState: { textAlign: "center", marginTop: "100px" }
 };
