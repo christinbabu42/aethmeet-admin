@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api/axios'; 
-import { Settings, Save, RefreshCcw, Info, CheckCircle, AlertCircle, TrendingUp, Gift } from 'lucide-react';
+import { Settings, Save, RefreshCcw, Info, CheckCircle, AlertCircle, TrendingUp, Gift, Wallet } from 'lucide-react';
 
 const RateManagement = () => {
   const [config, setConfig] = useState({
@@ -8,6 +8,7 @@ const RateManagement = () => {
     hostCoinValue: 0,
     platformCommissionRate: 0,
     giftCommissionRate: 0,
+    minimumWithdrawalAmount: 0 // ✅ NEW: Added to state
   });
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
@@ -27,6 +28,7 @@ const RateManagement = () => {
         hostCoinValue: response.data.hostCoinValue || 0.42,
         platformCommissionRate: response.data.platformCommissionRate || 0.15,
         giftCommissionRate: response.data.giftCommissionRate || 0.2,
+        minimumWithdrawalAmount: response.data.minimumWithdrawalAmount || 500 // ✅ NEW: Fetch logic
       });
       setLoading(false);
     } catch (err) {
@@ -38,10 +40,15 @@ const RateManagement = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // Validation for both rates
+    // Validation for rates and withdrawal amount
     if (config.platformCommissionRate > 1 || config.platformCommissionRate < 0 || 
         config.giftCommissionRate > 1 || config.giftCommissionRate < 0) {
       showStatus('error', 'Commission rates must be between 0 and 1 (e.g., 0.15)');
+      return;
+    }
+
+    if (config.minimumWithdrawalAmount < 0) {
+      showStatus('error', 'Minimum withdrawal cannot be negative');
       return;
     }
 
@@ -52,13 +59,14 @@ const RateManagement = () => {
       const response = await api.put('/admin/rate-config', config);
       
       if (response.data.success) {
-        showStatus('success', 'Rates updated successfully!');
+        showStatus('success', 'Rates and Limits updated successfully!');
         if(response.data.config) {
             setConfig({
                 userCoinValue: response.data.config.userCoinValue,
                 hostCoinValue: response.data.config.hostCoinValue,
                 platformCommissionRate: response.data.config.platformCommissionRate,
-                giftCommissionRate: response.data.config.giftCommissionRate
+                giftCommissionRate: response.data.config.giftCommissionRate,
+                minimumWithdrawalAmount: response.data.config.minimumWithdrawalAmount // ✅ NEW: Update state from response
             });
         }
       }
@@ -148,16 +156,35 @@ const RateManagement = () => {
           </div>
         </div>
 
+        {/* ✅ NEW: Minimum Withdrawal Amount */}
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+            Minimum Withdrawal Amount (₹)
+            <span className="group relative">
+              <Info size={14} className="text-gray-400 cursor-help" />
+              <div className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded w-56 -top-12 left-6 z-10 shadow-xl">
+                Minimum earnings (in INR) required for a host to request a withdrawal.
+              </div>
+            </span>
+          </label>
+          <div className="relative">
+            <input
+              type="number"
+              value={config.minimumWithdrawalAmount}
+              onChange={(e) => setConfig({ ...config, minimumWithdrawalAmount: parseFloat(e.target.value) || 0 })}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all pr-12"
+              required
+            />
+            <span className="absolute right-4 top-3 text-gray-400 font-medium">INR</span>
+          </div>
+        </div>
+
+        <hr className="border-gray-100" />
+
         {/* Platform Commission (Calls) */}
         <div className="space-y-2">
           <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
             Call Commission Rate (0 - 1)
-            <span className="group relative">
-              <Info size={14} className="text-gray-400 cursor-help" />
-              <div className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded w-56 -top-12 left-6 z-10 shadow-xl">
-                The percentage the platform keeps from Calls (0.15 = 15%).
-              </div>
-            </span>
           </label>
           <div className="relative">
             <input
@@ -180,12 +207,6 @@ const RateManagement = () => {
         <div className="space-y-2">
           <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
             Gift Commission Rate (0 - 1)
-            <span className="group relative">
-              <Info size={14} className="text-gray-400 cursor-help" />
-              <div className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded w-56 -top-12 left-6 z-10 shadow-xl">
-                Platform cut specifically from virtual gifts (0.2 = 20%).
-              </div>
-            </span>
           </label>
           <div className="relative">
             <input
@@ -194,12 +215,7 @@ const RateManagement = () => {
               min="0"
               max="1"
               value={config.giftCommissionRate}
-              onChange={(e) =>
-                setConfig({
-                  ...config,
-                  giftCommissionRate: parseFloat(e.target.value) || 0
-                })
-              }
+              onChange={(e) => setConfig({ ...config, giftCommissionRate: parseFloat(e.target.value) || 0 })}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all pr-12"
               required
             />
@@ -242,7 +258,7 @@ const RateManagement = () => {
             </div>
             <div className="bg-slate-800 p-3 rounded border border-slate-700">
                 <p className="text-slate-400 text-[10px] uppercase font-bold italic flex items-center gap-1">
-                   <Gift size={10} /> Gift Host Payout
+                    <Gift size={10} /> Gift Host Payout
                 </p>
                 <p className="text-lg font-bold text-purple-400">₹{(100 * (1 - config.giftCommissionRate) * config.hostCoinValue).toFixed(2)}</p>
             </div>
@@ -250,9 +266,6 @@ const RateManagement = () => {
                 <p className="text-blue-300 text-[10px] uppercase font-bold">Est. Platform Profit (Call)</p>
                 <p className="text-2xl font-black text-green-400">
                     ₹{((100 * config.userCoinValue) - (100 * (1 - config.platformCommissionRate) * config.hostCoinValue)).toFixed(2)}
-                </p>
-                <p className="text-[10px] text-slate-400 mt-1 italic">
-                    Profit includes coin sale markup and chosen commission fee.
                 </p>
             </div>
         </div>

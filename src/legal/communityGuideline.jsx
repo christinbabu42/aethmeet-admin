@@ -9,13 +9,13 @@ const CommunityGuidelines = () => {
         {/* Formal Header Section */}
         <header className="border-b-2 border-slate-100 pb-5 mb-8">
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 tracking-tight">
-            📜 LUVIOS – COMMUNITY GUIDELINES & TERMS OF SERVICE
+            📜 Aeth-Meet – COMMUNITY GUIDELINES & TERMS OF SERVICE
           </h1>
           <div className="flex flex-col space-y-1">
             <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Effective Date: March 2026</span>
-            <span className="text-xs font-semibold text-slate-500">Platform: Luvios</span>
+            <span className="text-xs font-semibold text-slate-500">Platform: Aeth-Meet</span>
             <span className="text-xs font-semibold text-slate-500">Category: Live Entertainment & Interactive Streaming</span>
-            <span className="text-xs font-semibold text-slate-500">Operated by: Luvios Entertainment</span>
+            <span className="text-xs font-semibold text-slate-500">Operated by: Aeth-Meet Entertainment</span>
             <span className="text-xs font-semibold text-slate-500 tracking-wide">Jurisdiction: India</span>
           </div>
         </header>
@@ -26,7 +26,7 @@ const CommunityGuidelines = () => {
             1. INTRODUCTION
           </h2>
           <p className="text-sm leading-relaxed text-slate-600 mb-4">
-            At Luvios, our mission is to create a safe and engaging live entertainment environment where users and hosts can interact respectfully. We prioritize:
+            At Aeth-Meet, our mission is to create a safe and engaging live entertainment environment where users and hosts can interact respectfully. We prioritize:
           </p>
           <div className="pl-2 mb-4 space-y-1">
             {['Safety', 'Trust', 'Authenticity', 'Transparency'].map((item) => (
@@ -34,7 +34,7 @@ const CommunityGuidelines = () => {
             ))}
           </div>
           <p className="text-sm leading-relaxed text-slate-600 italic">
-            These Community Guidelines define what is allowed and prohibited on Luvios. Private calls and chats are not continuously monitored in real time.
+            These Community Guidelines define what is allowed and prohibited on Aeth-Meet. Private calls and chats are not continuously monitored in real time.
             However, automated safety systems and user reports may trigger moderation review.
           </p>
         </section>
@@ -45,7 +45,7 @@ const CommunityGuidelines = () => {
             2. ELIGIBILITY & AGE POLICY
           </h2>
           <p className="text-sm font-black text-red-600 underline decoration-red-600 mb-2 italic">
-            Luvios is strictly 18+. Minors are not permitted under any circumstances.
+            Aeth-Meet is strictly 18+. Minors are not permitted under any circumstances.
           </p>
           <p className="text-sm text-slate-600 mb-2">We enforce this through:</p>
           <ul className="list-none pl-2 mb-4 space-y-1">
@@ -65,7 +65,7 @@ const CommunityGuidelines = () => {
           <h2 className="text-lg font-extrabold text-blue-700 border-l-4 border-blue-500 pl-3 mb-4 uppercase tracking-wide">
             3. LIVE STREAMING POLICY
           </h2>
-          <p className="text-sm text-slate-600 mb-4 leading-relaxed">Live streaming is the core feature of Luvios. All sessions must adhere to the following:</p>
+          <p className="text-sm text-slate-600 mb-4 leading-relaxed">Live streaming is the core feature of Aeth-Meet. All sessions must adhere to the following:</p>
           
           <h3 className="text-sm font-bold text-slate-700 mt-5 mb-2">3.1 Allowed Live Content</h3>
           <ul className="list-none pl-2 mb-4 space-y-1">
@@ -116,7 +116,7 @@ const CommunityGuidelines = () => {
           <h2 className="text-lg font-extrabold text-blue-700 border-l-4 border-blue-500 pl-3 mb-4 uppercase tracking-wide">
             5. REPORTING & BLOCKING SYSTEMS
           </h2>
-          <p className="text-sm text-slate-600 mb-4 leading-relaxed">To maintain a safe environment, Luvios provides robust tools for users to manage their experience:</p>
+          <p className="text-sm text-slate-600 mb-4 leading-relaxed">To maintain a safe environment, Aeth-Meet provides robust tools for users to manage their experience:</p>
           
           <h3 className="text-sm font-bold text-slate-700 mt-4 mb-1">5.1 Reporting Mechanism</h3>
           <p className="text-sm text-slate-600 mb-4 leading-relaxed">Users can report any stream, message, or profile that violates these guidelines by clicking the "Report" icon. Our safety team reviews reports 24/7.</p>
@@ -178,7 +178,7 @@ const CommunityGuidelines = () => {
           <div className="space-y-2">
             <p className="text-[13px] text-slate-600 leading-relaxed">• Coins are digital virtual items and do not represent real currency.</p>
             <p className="text-[13px] text-slate-600 leading-relaxed">• Displayed INR value is an estimated conversion for transparency purposes only.</p>
-            <p className="text-[13px] text-slate-600 leading-relaxed">• Luvios reserves the right to modify coin conversion rates at any time.</p>
+            <p className="text-[13px] text-slate-600 leading-relaxed">• Aeth-Meet reserves the right to modify coin conversion rates at any time.</p>
             <p className="text-[13px] text-slate-600 leading-relaxed">• Final withdrawal amounts may vary based on platform fees, taxes, and compliance deductions.</p>
           </div>
         </section>
@@ -209,16 +209,16 @@ const CommunityGuidelines = () => {
         <footer className="border-t border-slate-200 pt-8 mt-10 space-y-6">
           <div>
             <h4 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-1">20. LIMITATION OF LIABILITY</h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed uppercase tracking-tighter">Luvios provides services "as is" and is not responsible for individual user interactions.</p>
+            <p className="text-[11px] text-slate-400 leading-relaxed uppercase tracking-tighter">Aeth-Meet provides services "as is" and is not responsible for individual user interactions.</p>
           </div>
           
           <div>
             <h4 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-1">21. POLICY UPDATES</h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed uppercase tracking-tighter">Luvios reserves the right to update these policies. Continued use constitutes acceptance.</p>
+            <p className="text-[11px] text-slate-400 leading-relaxed uppercase tracking-tighter">Aeth-Meet reserves the right to update these policies. Continued use constitutes acceptance.</p>
           </div>
           
           <p className="text-center text-[10px] font-black text-slate-300 tracking-[0.3em] py-5">
-            © 2026 LUVIOS ENTERTAINMENT
+            © 2026 Aeth-Meet ENTERTAINMENT
           </p>
         </footer>
       </div>

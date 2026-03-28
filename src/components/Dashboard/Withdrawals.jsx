@@ -5,20 +5,14 @@ export default function Withdrawal() {
   const [withdrawals, setWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
-  const [rate, setRate] = useState(0);
 
   // Fetch withdrawals on mount
   useEffect(() => {
     fetchWithdrawals();
-
-    api.get("/api/config").then(res => {
-      setRate(res.data.hostCoinValue); // ✅ from DB
-    });
   }, []);
 
   const fetchWithdrawals = async () => {
     try {
-      // Backend returns both "pending" and "processing" statuses
       const res = await api.get("/admin/withdraw/pending");
       setWithdrawals(res.data.pending || []);
     } catch (err) {
@@ -29,8 +23,7 @@ export default function Withdrawal() {
   };
 
   /**
-   * Unified handler for Approve, Complete (Mark Paid), and Reject
-   * FIXED: Now uses withdrawalId to target specific transaction
+   * Unified handler for Approve, Mark Paid, and Reject
    */
   const handleAction = async (endpoint, withdrawalId, msg) => {
     if (!window.confirm(msg)) return;
@@ -45,8 +38,7 @@ export default function Withdrawal() {
   };
 
   /**
-   * Logic for Approve All button (Moves all PENDING to PROCESSING)
-   * FIXED: Uses item.withdrawalId for specific targeting
+   * Bulk approval logic
    */
   const approveAll = async () => {
     const onlyPending = withdrawals.filter(w => w.status === "pending");
@@ -73,7 +65,6 @@ export default function Withdrawal() {
 
   return (
     <div style={styles.container}>
-      {/* TOP HEADER SECTION */}
       <div style={styles.headerSection}>
         <div>
           <h2 style={styles.title}>Withdrawal Management</h2>
@@ -96,7 +87,6 @@ export default function Withdrawal() {
 
       <hr style={styles.divider} />
 
-      {/* MAIN CONTENT AREA */}
       {loading ? (
         <div style={styles.centerMessage}>
           <div style={styles.spinner}></div>
@@ -118,13 +108,9 @@ export default function Withdrawal() {
                 <div>
                   <p style={styles.userLabel}>USER INFO</p>
                   <p style={styles.userIdText}>{item.name || "Unknown User"}</p>
-                  
-                  {/* ✅ Show Country Name or Code */}
                   <p style={{ fontSize: '11px', color: '#64748b', margin: '2px 0' }}>
                     📍 {item.countryName || item.country || "N/A"}
                   </p>
-                  
-                  {/* Status Badge */}
                   <span style={{
                     ...styles.statusBadge,
                     backgroundColor: item.status === "processing" ? "#fef3c7" : "#f1f5f9",
@@ -138,17 +124,39 @@ export default function Withdrawal() {
               <div style={styles.payoutDetails}>
                 <p style={styles.userLabel}>PAYMENT INFO</p>
                 <div style={styles.paymentInfoBox}>
+{item.email && (
+  <p style={styles.paymentText}>
+    <strong>Email:</strong> {item.email}
+  </p>
+)}
+
+{(item.phone || item.bankDetails?.phone) && (
+  <p style={styles.paymentText}>
+    <strong>Phone:</strong> {item.phone || item.bankDetails?.phone}
+  </p>
+)}
+
                   {item.upiId && <p style={styles.paymentText}><strong>UPI:</strong> {item.upiId}</p>}
-                  
+
                   {item.bankDetails?.accountNumber && (
                     <div style={styles.bankBox}>
+                      <p style={styles.paymentText}><strong>Name:</strong> {item.bankDetails.accountHolderName || "N/A"}</p>
                       <p style={styles.paymentText}><strong>A/C:</strong> {item.bankDetails.accountNumber}</p>
+                      <p style={styles.paymentText}><strong>Bank:</strong> {item.bankDetails.bankName || "N/A"}</p>
                       <p style={styles.paymentText}><strong>IFSC:</strong> {item.bankDetails.ifsc || "N/A"}</p>
                     </div>
                   )}
 
                   {item.paypalEmail && <p style={styles.paymentText}><strong>PayPal:</strong> {item.paypalEmail}</p>}
-                  {!item.upiId && !item.bankDetails?.accountNumber && !item.paypalEmail && <p style={styles.paymentText}>No info</p>}
+
+{!item.upiId &&
+ !item.bankDetails?.accountNumber &&
+ !item.paypalEmail &&
+ !item.email &&
+ !item.phone &&
+ !item.bankDetails?.phone && (
+   <p style={styles.paymentText}>No info</p>
+)}
                 </div>
               </div>
 
@@ -198,7 +206,6 @@ export default function Withdrawal() {
   );
 }
 
-// STYLES OBJECT
 const styles = {
   container: { padding: "40px", fontFamily: "'Inter', sans-serif", backgroundColor: "#f8fafc", minHeight: "100vh" },
   headerSection: { display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "10px" },
@@ -215,7 +222,9 @@ const styles = {
   statusBadge: { padding: "2px 8px", borderRadius: "4px", fontSize: "10px", fontWeight: "800", marginTop: "4px", display: "inline-block" },
   payoutDetails: { flex: 1.5, padding: "0 15px", borderLeft: "1px solid #f1f5f9", borderRight: "1px solid #f1f5f9" },
   paymentText: { fontSize: "12px", margin: "2px 0", color: "#475569" },
+  bankBox: { display: 'flex', flexDirection: 'column', gap: '1px' },
   amountInfo: { flex: 0.8, paddingLeft: "20px" },
+  amountRow: { display: 'flex', flexDirection: 'column', gap: '4px' },
   rupeeValue: { fontSize: "18px", fontWeight: "800", color: "#059669" },
   coinText: { color: "#b45309", fontWeight: "700", fontSize: "12px" },
   buttonGroup: { display: "flex", gap: "8px" },

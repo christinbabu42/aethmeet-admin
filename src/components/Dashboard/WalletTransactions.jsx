@@ -2,12 +2,24 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 // --- Production Configuration ---
-// This uses the environment variable if present, otherwise falls back to localhost for development
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+// Pointing directly to your production API
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://admin.aethmeet.com';
 
 // Create a configured axios instance for the wallet admin routes
 const walletApi = axios.create({
   baseURL: `${API_BASE}/api/wallet/admin`,
+});
+
+// --- Auth Interceptor ---
+// Automatically attaches the admin token to every request for this instance
+walletApi.interceptors.request.use((config) => {
+  const token = localStorage.getItem('adminToken'); // Ensure this matches your login storage key
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
 });
 
 const TransactionPlaceholder = ({ title, icon }) => (
@@ -42,13 +54,11 @@ export default function AdminTransactions() {
 
   const fetchTransactions = async () => {
     try {
-      // Updated to use the dynamic walletApi instance
       const res = await walletApi.get('/transactions');
       if (res.data.success) {
         setTransactions(res.data.data);
       }
     } catch (err) {
-      // Improved error logging for production
       console.error("❌ Fetch Error:", err.response?.data || err.message);
     } finally {
       setLoading(false);
@@ -58,7 +68,6 @@ export default function AdminTransactions() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this record?")) return;
     try {
-      // Updated to use the dynamic walletApi instance
       const res = await walletApi.delete(`/transactions/${id}`);
       if (res.data.success) {
         setTransactions(prev => prev.filter(tx => tx._id !== id));
@@ -74,14 +83,12 @@ export default function AdminTransactions() {
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     let filtered = transactions.filter((tx) => {
-      // 1. CATEGORY FILTER (Matches the 3 requested types)
       if (tx.category !== categoryFilter) return false;
 
       const txDate = new Date(tx.createdAt);
       const diffTime = startOfToday - txDate;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      // 2. TIMEFRAME FILTERS
       if (filterType === 'today') return txDate >= startOfToday;
       if (filterType === '2days') return diffDays <= 1;
       if (filterType === '1week') return diffDays <= 6;
@@ -106,7 +113,6 @@ export default function AdminTransactions() {
 
     setFilteredTransactions(filtered);
     
-    // SUMMATION: If COIN_PURCHASE, sum the 'amount' (money). Else, sum 'coins'.
     const total = filtered.reduce((sum, tx) => {
         if (categoryFilter === 'COIN_PURCHASE') {
             return sum + (tx.amount || 0);
@@ -155,7 +161,6 @@ export default function AdminTransactions() {
         {/* Filter Toolbar */}
         <div className="flex flex-wrap items-center gap-6 mb-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
           
-          {/* CATEGORY SELECTOR */}
           <div className="flex flex-col">
             <label className="text-[10px] font-bold text-slate-400 uppercase ml-1 mb-1">Transaction Source</label>
             <select 
@@ -171,7 +176,6 @@ export default function AdminTransactions() {
 
           <div className="h-10 w-[1px] bg-slate-200 hidden md:block"></div>
 
-          {/* TIMEFRAME SELECTOR */}
           <div className="flex flex-col">
             <label className="text-[10px] font-bold text-slate-400 uppercase ml-1 mb-1">Timeframe</label>
             <select 

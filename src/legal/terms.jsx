@@ -5,12 +5,12 @@ const TermsAndConditions = () => {
 TERMS & CONDITIONS
 Last Updated: March 2026
 
-App Name: Luvios
-Operated by: Luvios Entertainment
+App Name: Aeth-Meet
+Operated by: Aeth-Meet Entertainment
 Jurisdiction: India
 
 1. Eligibility (Age Restriction)
-Luvios is strictly an 18+ platform. By using this service, you represent that you are at least 18 years of age. Minors are strictly prohibited.
+Aeth-Meet is strictly an 18+ platform. By using this service, you represent that you are at least 18 years of age. Minors are strictly prohibited.
 
 2. Virtual Items (Coins)
 • Definition: Coins are digital virtual items used exclusively within the platform.
@@ -58,13 +58,13 @@ We reserve the right to suspend or terminate accounts that violate our policies 
 Users and hosts must not share UPI IDs, QR codes, or bank details to negotiate off-platform payments. This results in a permanent ban.
 
 10. Limitation of Liability
-Luvios provides services "as is." We are not liable for damages arising from user interactions or platform downtime. We do not guarantee uninterrupted or error-free service and may suspend the platform temporarily for maintenance or security reasons.
+Aeth-Meet provides services "as is." We are not liable for damages arising from user interactions or platform downtime. We do not guarantee uninterrupted or error-free service and may suspend the platform temporarily for maintenance or security reasons.
 
 11. Governing Law
 These Terms shall be governed by and interpreted in accordance with the laws of the applicable jurisdiction in which the company operates, without regard to conflict of law principles.
 
 12. Contact Us
-For legal queries: luviospprt@gmail.com.
+For legal queries: aethmeetsupport@gmail.com.
   `;
 
   return (

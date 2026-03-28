@@ -41,8 +41,8 @@ function LoginContent({ onLoginSuccess }) {
           className="flex items-center gap-2 cursor-pointer" 
           onClick={scrollToDownload}
         >
-          <img src="/logo1.png" alt="Luvios Logo" className="h-8 w-auto" />
-          <span className="text-xl font-bold tracking-tight text-white uppercase">LUVIOS</span>
+          <img src="/logo1.png" alt="Aeth-Meet Logo" className="h-8 w-auto" />
+          <span className="text-xl font-bold tracking-tight text-white uppercase">Aeth-Meet</span>
         </div>
         
         <div className="flex items-center gap-6">
@@ -105,7 +105,7 @@ function LoginContent({ onLoginSuccess }) {
             <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-pink-500/40 via-purple-500/30 to-pink-500/40"></div>
             <img 
               src="/logo1.png" 
-              alt="Luvios Logo" 
+              alt="Aeth-Meet Logo" 
               className="relative h-24 w-24 object-contain opacity-0 animate-[fadeIn_2s_ease-in-out_forwards]"
             />
           </div>
@@ -136,7 +136,7 @@ function LoginContent({ onLoginSuccess }) {
             ref={downloadSectionRef}
             className="flex flex-col items-center p-8 rounded-3xl bg-white/5 border border-white/10 w-full max-w-2xl backdrop-blur-md shadow-2xl"
           >
-            <p className="text-sm font-bold text-white uppercase tracking-widest mb-6">Experience Luvios on your phone</p>
+            <p className="text-sm font-bold text-white uppercase tracking-widest mb-6">Experience Aeth-Meet on your phone</p>
             <div className="flex flex-wrap justify-center gap-4">
               <button className="flex items-center gap-3 px-8 py-4 bg-white text-[#0F172A] rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
                 <span className="font-bold text-lg">App Store</span>
@@ -157,7 +157,7 @@ function LoginContent({ onLoginSuccess }) {
         <a href="/moderation-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Moderation Policy</a>
         <a href="/refund-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Refund Policy</a>
         <p className="text-xs text-gray-600 w-full text-center mt-4">
-          © 2026 Luvios Entertainment. Operated in India.
+          © 2026 Aeth-Meet Entertainment. Operated in India.
         </p>
       </footer>
     </div>
