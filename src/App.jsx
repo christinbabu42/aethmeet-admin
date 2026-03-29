@@ -29,6 +29,8 @@ export default function App() {
   }, []);
 
   const handleLoginSuccess = async (googleResponse) => {
+  console.log("RECEIVED IN APP:", googleResponse); // 👈 ADD THIS
+
     try {
       // ✅ We now send idToken (the JWT) instead of accessToken
       const res = await axios.post(
