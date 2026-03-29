@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useGoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 // Note: Replace with your actual Client ID from Google Cloud Console
 const GOOGLE_CLIENT_ID = "647678003424-sct1je6u5s8fq497hcd96ercqjmtr5f3.apps.googleusercontent.com";
@@ -9,23 +9,6 @@ function LoginContent({ onLoginSuccess }) {
 
   // Reference for the App Download section
   const downloadSectionRef = useRef(null);
-
-  // This hook allows us to trigger the login popup programmatically
-  const triggerDirectLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log('Login Success:', tokenResponse);
-      onLoginSuccess(tokenResponse);
-    },
-    onError: (error) => console.log('Login Failed:', error),
-    // flow: 'implicit' is default, ensures a popup opens
-  });
-
-  const handleAdminClick = (e) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
-    // Directly open the Google Login popup
-    triggerDirectLogin();
-  };
 
   const scrollToDownload = (e) => {
     e.preventDefault();
@@ -62,14 +45,24 @@ function LoginContent({ onLoginSuccess }) {
 
             {/* Dropdown Menu */}
             {isMenuOpen && (
-              <div className="absolute right-0 mt-3 w-48 bg-[#1E293B] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 z-50">
-                <button 
-                  onClick={handleAdminClick}
-                  className="w-full text-left px-4 py-3 text-sm text-gray-200 hover:bg-rose-500 hover:text-white transition-colors font-medium flex items-center justify-between"
-                >
-                  Staff Only
-                  <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded uppercase">Login</span>
-                </button>
+              <div className="absolute right-0 mt-3 w-56 bg-[#1E293B] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2 z-50">
+                <div className="px-4 py-2 border-b border-white/5 mb-2">
+                  <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-2">Staff Only</p>
+                  {/* ✅ THE REAL FIX: Using GoogleLogin component to get the correct ID Token */}
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      console.log('Login Success:', credentialResponse);
+                      setIsMenuOpen(false);
+                      onLoginSuccess(credentialResponse);
+                    }}
+                    onError={() => console.log('Login Failed')}
+                    useOneTap
+                    theme="filled_blue"
+                    shape="pill"
+                    size="medium"
+                  />
+                </div>
+                
                 <button 
                   onClick={() => { setIsMenuOpen(false); scrollToDownload(); }}
                   className="w-full text-left px-4 py-3 text-sm text-gray-400 hover:bg-white/5 transition-colors"

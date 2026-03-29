@@ -28,27 +28,29 @@ export default function App() {
     setLoading(false);
   }, []);
 
-const handleLoginSuccess = async (googleResponse) => {
-  try {
-    const res = await axios.post(
-      "https://api.aethmeet.com/api/auth/google",
-      {
-        accessToken: googleResponse.access_token, // <--- send accessToken
-        isAdminLogin: true
-      }
-    );
+  const handleLoginSuccess = async (googleResponse) => {
+    try {
+      // ✅ We now send idToken (the JWT) instead of accessToken
+      const res = await axios.post(
+        "https://api.aethmeet.com/api/auth/google",
+        {
+          idToken: googleResponse.credential, 
+          isAdminLogin: true
+        }
+      );
 
-    if (res.data.isAdmin && res.data.token) {
-      localStorage.setItem("adminToken", res.data.token);
-      setIsAdmin(true);
-    } else {
-      alert("Access Denied: You are not an admin.");
+      // Backend returns isAdmin check and the custom JWT for your admin panel
+      if (res.data.isAdmin && res.data.token) {
+        localStorage.setItem("adminToken", res.data.token);
+        setIsAdmin(true);
+      } else {
+        alert("Access Denied: You are not an admin.");
+      }
+    } catch (err) {
+      console.error("Login failed", err);
+      alert(err.response?.data?.message || "Authentication failed");
     }
-  } catch (err) {
-    console.error("Login failed", err);
-    alert(err.response?.data?.message || "Authentication failed");
-  }
-};
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
