@@ -25,7 +25,7 @@ export default function LegalScreen() {
             Legal Center
           </h1>
           <p className="text-slate-500 text-sm">
-            Review our policies, terms, and community standards for Aeth-Meet.
+            Review our policies, terms, and community standards for Luvios.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function LegalScreen() {
         {/* Bottom Footer Info */}
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-400 font-medium tracking-widest uppercase">
-            © 2026 Aeth-Meet Entertainment • Last updated March 2026
+            © 2026 Luvios Entertainment • Last updated March 2026
           </p>
         </div>
 

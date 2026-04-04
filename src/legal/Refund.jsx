@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DeliveryRefundCancellation = () => {
-  const supportEmail = "aethmeetsupport@gmail.com";
+  const supportEmail = "luviospprt@gmail.com";
   const effectiveDate = "March 7, 2026";
 
   return (
@@ -17,15 +17,15 @@ const DeliveryRefundCancellation = () => {
         <div className="p-8 space-y-8">
           {/* Meta Info */}
           <div className="flex flex-col gap-1 border-b border-slate-100 pb-6">
-            <p><span className="font-bold text-slate-900">App Name:</span> Aeth-Meet</p>
-            <p><span className="font-bold text-slate-900">Operated by:</span> Aeth-Meet Entertainment</p>
+            <p><span className="font-bold text-slate-900">App Name:</span> Luvios</p>
+            <p><span className="font-bold text-slate-900">Operated by:</span> Luvios Entertainment</p>
           </div>
           
           <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-r-xl">
             <p className="text-rose-900 leading-relaxed">
               <span className="font-bold">Important: </span>
-              Users must be at least <span className="font-bold underline">18 years old</span> to use Aeth-Meet. 
-              Aeth-Meet provides digital entertainment services including live streaming, private calls, and interactive gifting.
+              Users must be at least <span className="font-bold underline">18 years old</span> to use Luvios. 
+              Luvios provides digital entertainment services including live streaming, private calls, and interactive gifting.
             </p>
           </div>
 
@@ -35,11 +35,11 @@ const DeliveryRefundCancellation = () => {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-indigo-600">1. Delivery Policy</h2>
             <p>
-              Aeth-Meet provides digital services and virtual goods exclusively within the application. 
+              Luvios provides digital services and virtual goods exclusively within the application. 
               All purchases relate to digital entertainment services and virtual items delivered electronically.
             </p>
             <p>
-              All purchases within Aeth-Meet relate strictly to digital goods and services. 
+              All purchases within Luvios relate strictly to digital goods and services. 
               No physical products are delivered to users.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-600">
@@ -52,8 +52,8 @@ const DeliveryRefundCancellation = () => {
               <p className="font-bold text-slate-900 mb-2 underline">Scope of Virtual Goods:</p>
               <p className="mb-4">Includes Coins, Gifts, Premium features, Private call access, and Live stream interactions.</p>
               <p className="text-sm text-slate-500 italic leading-relaxed">
-                Virtual currency (Coins) are digital items used only within the Aeth-Meet platform for entertainment services. 
-                <span className="font-bold text-slate-700"> Coins purchased by users cannot be redeemed for real-world money, transferred between users, or used outside the Aeth-Meet platform.</span> They possess no real-world monetary value.
+                Virtual currency (Coins) are digital items used only within the Luvios platform for entertainment services. 
+                <span className="font-bold text-slate-700"> Coins purchased by users cannot be redeemed for real-world money, transferred between users, or used outside the Luvios platform.</span> They possess no real-world monetary value.
               </p>
             </div>
           </section>
@@ -61,9 +61,9 @@ const DeliveryRefundCancellation = () => {
           {/* 2. No Gambling Policy */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">2. No Gambling or Betting</h2>
-            <p>Aeth-Meet is an entertainment platform. Coins and virtual gifts are used only for social interaction, live streaming engagement, and appreciation of hosts.</p>
+            <p>Luvios is an entertainment platform. Coins and virtual gifts are used only for social interaction, live streaming engagement, and appreciation of hosts.</p>
             <ul className="list-inside list-disc text-slate-600">
-              <li>Aeth-Meet does not provide gambling, betting, or wagering services.</li>
+              <li>Luvios does not provide gambling, betting, or wagering services.</li>
               <li>Coins cannot be used to participate in games of chance.</li>
               <li>Users cannot exchange coins for real-world currency.</li>
             </ul>
@@ -77,7 +77,7 @@ const DeliveryRefundCancellation = () => {
               These gifts are converted into internal earnings based on the platform’s coin conversion system.
             </p>
             <p className="bg-indigo-50 p-4 rounded-lg text-indigo-900 border border-indigo-100">
-              Host earnings are <span className="font-bold underline text-indigo-950">internal credits recorded within the Aeth-Meet platform based on virtual gifts received</span> and are subject to platform rules, safety verification, and compliance checks before any withdrawal or redemption is permitted.
+              Host earnings are <span className="font-bold underline text-indigo-950">internal credits recorded within the Luvios platform based on virtual gifts received</span> and are subject to platform rules, safety verification, and compliance checks before any withdrawal or redemption is permitted.
             </p>
           </section>
 
@@ -88,17 +88,17 @@ const DeliveryRefundCancellation = () => {
             <ul className="list-disc pl-5 text-slate-600">
               <li>All gifts sent are final and cannot be reversed or refunded.</li>
               <li>Users and hosts are responsible for confirming the gift before sending.</li>
-              <li>Aeth-Meet cannot retrieve or return gifts once they have been delivered.</li>
+              <li>Luvios cannot retrieve or return gifts once they have been delivered.</li>
             </ul>
           </section>
 
           {/* 5. Live Streaming Service Disclaimer */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">5. Live Streaming Service Disclaimer</h2>
-            <p>Aeth-Meet provides a platform for hosts to broadcast live content and interact with users. The platform does not guarantee uninterrupted live sessions.</p>
+            <p>Luvios provides a platform for hosts to broadcast live content and interact with users. The platform does not guarantee uninterrupted live sessions.</p>
             <ul className="list-disc pl-5 text-slate-600">
               <li>Live streams may be affected by internet connectivity or technical issues.</li>
-              <li>Aeth-Meet is not responsible for interruptions caused by user devices or network failures.</li>
+              <li>Luvios is not responsible for interruptions caused by user devices or network failures.</li>
               <li>Coins spent during live interactions or calls are considered consumed once the session begins.</li>
             </ul>
           </section>
@@ -106,17 +106,17 @@ const DeliveryRefundCancellation = () => {
           {/* 6. Cancellation Policy */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">6. Cancellation Policy</h2>
-            <p>Once a purchase is completed through Google Play Billing, it cannot be cancelled from within the Aeth-Meet application.</p>
+            <p>Once a purchase is completed through Google Play Billing, it cannot be cancelled from within the Luvios application.</p>
             <p className="font-semibold text-slate-900">By completing a payment, you acknowledge that consumption of the service begins immediately upon delivery.</p>
           </section>
 
           {/* 7. Refund Policy */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">7. Refund Policy</h2>
-            <p>Aeth-Meet maintains a strict policy regarding virtual goods. Refund requests are evaluated under specific exceptional circumstances.</p>
+            <p>Luvios maintains a strict policy regarding virtual goods. Refund requests are evaluated under specific exceptional circumstances.</p>
             <div className="bg-blue-50 border border-blue-200 p-5 rounded-xl text-blue-900">
               Refund requests for purchases made through Google Play will be handled in accordance with Google Play’s refund policy. 
-              Users should submit refund requests through their Google Play account. Aeth-Meet may assist users by verifying transaction issues 
+              Users should submit refund requests through their Google Play account. Luvios may assist users by verifying transaction issues 
               such as duplicate charges or technical failures.
             </div>
           </section>
@@ -146,11 +146,11 @@ const DeliveryRefundCancellation = () => {
           {/* 11. Age Responsibility */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">11. Age Responsibility</h2>
-            <p>Aeth-Meet services are intended strictly for users aged 18 years or older.</p>
+            <p>Luvios services are intended strictly for users aged 18 years or older.</p>
             <ul className="list-disc pl-5 text-slate-600">
               <li>Users must ensure they meet the legal age requirement in their country.</li>
               <li>Accounts belonging to minors will be permanently suspended.</li>
-              <li>Aeth-Meet may request age verification at any time.</li>
+              <li>Luvios may request age verification at any time.</li>
             </ul>
           </section>
 
@@ -164,13 +164,13 @@ const DeliveryRefundCancellation = () => {
           {/* 13. Policy Updates */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">13. Policy Updates</h2>
-            <p className="text-slate-600">Aeth-Meet Entertainment reserves the right to update this policy. Updated versions will be posted within the app.</p>
+            <p className="text-slate-600">Luvios Entertainment reserves the right to update this policy. Updated versions will be posted within the app.</p>
           </section>
 
           {/* Footer Text */}
           <div className="pt-8 border-t border-slate-100">
             <p className="text-center text-sm text-slate-500 italic">
-              By using Aeth-Meet or purchasing coins, you agree to this Delivery, Cancellation and Refund Policy.
+              By using Luvios or purchasing coins, you agree to this Delivery, Cancellation and Refund Policy.
             </p>
           </div>
         </div>

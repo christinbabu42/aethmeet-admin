@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { useGoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 // Note: Replace with your actual Client ID from Google Cloud Console
 const GOOGLE_CLIENT_ID = "647678003424-sct1je6u5s8fq497hcd96ercqjmtr5f3.apps.googleusercontent.com";
@@ -9,6 +9,23 @@ function LoginContent({ onLoginSuccess }) {
 
   // Reference for the App Download section
   const downloadSectionRef = useRef(null);
+
+  // This hook allows us to trigger the login popup programmatically
+  const triggerDirectLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log('Login Success:', tokenResponse);
+      onLoginSuccess(tokenResponse);
+    },
+    onError: (error) => console.log('Login Failed:', error),
+    // flow: 'implicit' is default, ensures a popup opens
+  });
+
+  const handleAdminClick = (e) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    // Directly open the Google Login popup
+    triggerDirectLogin();
+  };
 
   const scrollToDownload = (e) => {
     e.preventDefault();
@@ -24,8 +41,8 @@ function LoginContent({ onLoginSuccess }) {
           className="flex items-center gap-2 cursor-pointer" 
           onClick={scrollToDownload}
         >
-          <img src="/logo1.png" alt="Aeth-Meet Logo" className="h-8 w-auto" />
-          <span className="text-xl font-bold tracking-tight text-white uppercase">Aeth-Meet</span>
+          <img src="/logo1.png" alt="Luvios Logo" className="h-8 w-auto" />
+          <span className="text-xl font-bold tracking-tight text-white uppercase">LUVIOS</span>
         </div>
         
         <div className="flex items-center gap-6">
@@ -45,24 +62,14 @@ function LoginContent({ onLoginSuccess }) {
 
             {/* Dropdown Menu */}
             {isMenuOpen && (
-              <div className="absolute right-0 mt-3 w-56 bg-[#1E293B] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2 z-50">
-                <div className="px-4 py-2 border-b border-white/5 mb-2">
-                  <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-2">Staff Only</p>
-                  {/* ✅ THE REAL FIX: Using GoogleLogin component to get the correct ID Token */}
-                  <GoogleLogin
-                    onSuccess={(credentialResponse) => {
-                      console.log('Login Success:', credentialResponse);
-                      setIsMenuOpen(false);
-                      onLoginSuccess(credentialResponse);
-                    }}
-                    onError={() => console.log('Login Failed')}
-                    useOneTap
-                    theme="filled_blue"
-                    shape="pill"
-                    size="medium"
-                  />
-                </div>
-                
+              <div className="absolute right-0 mt-3 w-48 bg-[#1E293B] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 z-50">
+                <button 
+                  onClick={handleAdminClick}
+                  className="w-full text-left px-4 py-3 text-sm text-gray-200 hover:bg-rose-500 hover:text-white transition-colors font-medium flex items-center justify-between"
+                >
+                  Staff Only
+                  <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded uppercase">Login</span>
+                </button>
                 <button 
                   onClick={() => { setIsMenuOpen(false); scrollToDownload(); }}
                   className="w-full text-left px-4 py-3 text-sm text-gray-400 hover:bg-white/5 transition-colors"
@@ -98,7 +105,7 @@ function LoginContent({ onLoginSuccess }) {
             <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-pink-500/40 via-purple-500/30 to-pink-500/40"></div>
             <img 
               src="/logo1.png" 
-              alt="Aeth-Meet Logo" 
+              alt="Luvios Logo" 
               className="relative h-24 w-24 object-contain opacity-0 animate-[fadeIn_2s_ease-in-out_forwards]"
             />
           </div>
@@ -129,7 +136,7 @@ function LoginContent({ onLoginSuccess }) {
             ref={downloadSectionRef}
             className="flex flex-col items-center p-8 rounded-3xl bg-white/5 border border-white/10 w-full max-w-2xl backdrop-blur-md shadow-2xl"
           >
-            <p className="text-sm font-bold text-white uppercase tracking-widest mb-6">Experience Aeth-Meet on your phone</p>
+            <p className="text-sm font-bold text-white uppercase tracking-widest mb-6">Experience Luvios on your phone</p>
             <div className="flex flex-wrap justify-center gap-4">
               <button className="flex items-center gap-3 px-8 py-4 bg-white text-[#0F172A] rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
                 <span className="font-bold text-lg">App Store</span>
@@ -150,7 +157,7 @@ function LoginContent({ onLoginSuccess }) {
         <a href="/moderation-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Moderation Policy</a>
         <a href="/refund-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Refund Policy</a>
         <p className="text-xs text-gray-600 w-full text-center mt-4">
-          © 2026 Aeth-Meet Entertainment. Operated in India.
+          © 2026 Luvios Entertainment. Operated in India.
         </p>
       </footer>
     </div>
@@ -164,4 +171,4 @@ export default function Login(props) {
       <LoginContent {...props} />
     </GoogleOAuthProvider>
   );
-} 
+}
