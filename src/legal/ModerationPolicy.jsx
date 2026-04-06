@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ModerationPolicy = () => {
-  const supportEmail = "luviospprt@gmail.com";
+  const supportEmail = "aethmeet@gmail.com";
   const effectiveDate = "March 7, 2026";
 
   return (
@@ -20,8 +20,8 @@ const ModerationPolicy = () => {
           <section className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-r-xl">
             <h2 className="text-xl font-bold text-rose-700 mb-3">1. Introduction</h2>
             <p className="text-slate-700 leading-relaxed">
-              Luvios is committed to maintaining a safe, respectful, and positive environment for all users. 
-              Luvios uses a combination of automated safety systems, community reporting tools, and limited 
+              Aeth-Meet is committed to maintaining a safe, respectful, and positive environment for all users. 
+              Aeth-Meet uses a combination of automated safety systems, community reporting tools, and limited 
               moderation review to detect policy violations and maintain platform safety. 
               <br /><br />
               <span className="font-bold text-slate-900">Private calls and chats are not actively monitored in real-time.</span>
@@ -46,7 +46,7 @@ const ModerationPolicy = () => {
           {/* 3. Prohibited Content */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-indigo-600">3. Prohibited Content</h2>
-            <p>The following content is strictly prohibited on Luvios:</p>
+            <p>The following content is strictly prohibited on Aeth-Meet:</p>
             
             <div className="space-y-3">
               <p><span className="font-bold text-slate-900">Illegal Activities:</span></p>
@@ -74,9 +74,9 @@ const ModerationPolicy = () => {
           {/* 4. Live Stream Monitoring */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">4. Live Stream Monitoring</h2>
-            <p>Because Luvios supports live broadcasting:</p>
+            <p>Because Aeth-Meet supports live broadcasting:</p>
             <ul className="list-disc pl-5 space-y-2 text-slate-600">
-              <li>Luvios may use automated AI-based safety tools to detect nudity, harassment, scams, or other policy violations.</li>
+              <li>Aeth-Meet may use automated AI-based safety tools to detect nudity, harassment, scams, or other policy violations.</li>
               <li>Live streams may be monitored in real time by automated systems and human moderators.</li>
               <li>Moderators may pause, restrict, or terminate a live stream if policy violations are detected.</li>
               <li>Repeated violations may result in temporary or permanent account suspension.</li>
@@ -87,14 +87,14 @@ const ModerationPolicy = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">5. User Reporting & Blocking</h2>
             <p>
-              Luvios provides an in-app reporting and blocking system to maintain a safe environment. 
+              Aeth-Meet provides an in-app reporting and blocking system to maintain a safe environment. 
               Users can access these options from the three-dot (⋮) menu on a user's profile page, 
               where the options "Report" and "Block" are available.
             </p>
             <p>
               The "Report" option allows users to report violations such as harassment,
               inappropriate content, scams, or abusive behavior. All reports are reviewed by the 
-              Luvios moderation team.
+              Aeth-Meet moderation team.
             </p>
             <p>
               The "Block" option allows users to immediately prevent another user 
@@ -105,7 +105,7 @@ const ModerationPolicy = () => {
           {/* 6. Report Categories */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">6. Report Categories</h2>
-            <p>When reporting a user, Luvios may ask the reporting user to select a reason such as:</p>
+            <p>When reporting a user, Aeth-Meet may ask the reporting user to select a reason such as:</p>
             <ul className="list-disc pl-5 text-slate-600">
               <li>Harassment or abusive behavior</li>
               <li>Inappropriate live stream or video call content</li>
@@ -118,7 +118,7 @@ const ModerationPolicy = () => {
           {/* 7. Enforcement Actions */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">7. Enforcement Actions</h2>
-            <p>Depending on the severity of the violation, Luvios may take the following actions:</p>
+            <p>Depending on the severity of the violation, Aeth-Meet may take the following actions:</p>
             <ul className="list-disc pl-5 text-slate-600">
               <li>Content removal, warning notifications, or temporary feature restrictions.</li>
               <li>Temporary account suspension or permanent account termination.</li>
@@ -135,14 +135,14 @@ const ModerationPolicy = () => {
           {/* 9. Age Restrictions */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">9. Age Restrictions</h2>
-            <p>Luvios is strictly limited to users 18 years and older. Accounts suspected of belonging to minors will be suspended/banned and may be subject to identity verification.</p>
+            <p>Aeth-Meet is strictly limited to users 18 years and older. Accounts suspected of belonging to minors will be suspended/banned and may be subject to identity verification.</p>
           </section>
 
           {/* 10. Host Responsibilities */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">10. Host Responsibilities</h2>
             <p>
-              Hosts who broadcast live content on Luvios must follow additional safety rules.
+              Hosts who broadcast live content on Aeth-Meet must follow additional safety rules.
               Hosts are strictly prohibited from streaming explicit sexual content, nudity,
               illegal activities, harassment, or misleading promotions.
             </p>
@@ -151,7 +151,7 @@ const ModerationPolicy = () => {
           {/* 11. Continuous Improvement */}
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-indigo-600">11. Continuous Improvement</h2>
-            <p>Luvios continuously improves its moderation systems by updating detection technologies, expanding human moderator teams, and responding to community feedback to maintain a safe platform.</p>
+            <p>Aeth-Meet continuously improves its moderation systems by updating detection technologies, expanding human moderator teams, and responding to community feedback to maintain a safe platform.</p>
           </section>
 
           {/* 12. User Responsibility */}
@@ -159,7 +159,7 @@ const ModerationPolicy = () => {
             <h2 className="text-xl font-bold text-indigo-600">12. User Responsibility</h2>
             <p>
               Users are solely responsible for their behavior and interactions on the platform. 
-              Luvios does not control or guarantee the behavior of other users.
+              Aeth-Meet does not control or guarantee the behavior of other users.
             </p>
           </section>
 
@@ -175,7 +175,7 @@ const ModerationPolicy = () => {
           {/* Footer Text */}
           <div className="pt-8 border-t border-slate-100">
             <p className="text-center text-sm text-slate-500 italic">
-              By using Luvios, you agree to adhere to these moderation standards and our Community Guidelines.
+              By using Aeth-Meet, you agree to adhere to these moderation standards and our Community Guidelines.
             </p>
           </div>
         </div>

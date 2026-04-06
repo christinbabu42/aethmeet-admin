@@ -12,6 +12,7 @@ import CommunityGuidelines from "./legal/communityGuideline";
 import ModerationPolicy from "./legal/ModerationPolicy";
 import RefundPolicy from "./legal/Refund";
 import Support from "./legal/LegalScreen";
+import DeleteAccount from "./legal/DeleteAccount";
 
 export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -33,7 +34,7 @@ const handleLoginSuccess = async (googleResponse) => {
     const res = await axios.post(
       "https://api.aethmeet.com/api/auth/google",
       {
-        accessToken: googleResponse.access_token, // <--- send accessToken
+        idToken: googleResponse.idToken, // ✅ send idToken
         isAdminLogin: true
       }
     );
@@ -91,6 +92,7 @@ const handleLoginSuccess = async (googleResponse) => {
           <Route path="/moderation-policy" element={<ModerationPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/delete-account" element={<DeleteAccount />} />
         </Routes>
       </div>
     </Router>

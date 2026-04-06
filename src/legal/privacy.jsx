@@ -5,12 +5,12 @@ const PrivacyPolicy = () => {
 PRIVACY POLICY
 Last Updated: March 2026
 
-App Name: Luvios
-Operated by: Luvios Entertainment
+App Name: Aeth-Meet
+Operated by: Aeth-Meet (Individual developer)
 Jurisdiction: India
 
 1. Introduction
-We value your privacy. This policy explains how Luvios collects and safeguards your data. Luvios is strictly for users aged 18 and above.
+We value your privacy. This policy explains how Aeth-Meet collects and safeguards your data. Aeth-Meet is strictly for users aged 18 and above.
 
 2. Information Collection
 We collect:
@@ -60,13 +60,13 @@ We may use trusted third-party providers for:
 These providers only access data necessary to perform their services and are contractually obligated to protect user data.
 
 11. Children's Privacy
-Luvios is strictly for users 18+. If we discover that a minor has created an account, the account will be immediately terminated and associated data removed.
+Aeth-Meet is strictly for users 18+. If we discover that a minor has created an account, the account will be immediately terminated and associated data removed.
 
 12. Legal Basis for Processing (GDPR)
 We process personal data based on: User consent, contractual necessity, legal obligations, and legitimate interests such as fraud prevention and platform safety.
 
 13. Contact Us
-For privacy queries: luviospprt@gmail.com.
+For privacy queries: aethmeet@gmail.com.
   `;
 
   return (
