@@ -15,7 +15,7 @@ import Support from "./legal/LegalScreen";
 import DeleteAccount from "./legal/DeleteAccount";
 
 export default function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Check for existing session on mount
@@ -24,37 +24,47 @@ export default function App() {
     if (token) {
       // In a real production app, you might want to call a 
       // /api/auth/me endpoint here to verify the token is still valid
-      setIsAdmin(true);
+      setIsLoggedIn(true);
     }
     setLoading(false);
   }, []);
 
-const handleLoginSuccess = async (googleResponse) => {
-  try {
-    const res = await axios.post(
-      "https://api.aethmeet.com/api/auth/google",
-      {
-        idToken: googleResponse.idToken, // ✅ send idToken
-        isAdminLogin: true
-      }
-    );
+  const handleLoginSuccess = async (googleResponse) => {
+    try {
+      const res = await axios.post(
+        "https://api.aethmeet.com/api/auth/google",
+        {
+          idToken: googleResponse.idToken,
+          // Removed isAdminLogin
+        }
+      );
 
-    if (res.data.isAdmin && res.data.accessToken) {
-      localStorage.setItem("adminToken", res.data.accessToken);
-      localStorage.setItem("refreshToken", res.data.refreshToken);
-      setIsAdmin(true);
-    } else {
-      alert("Access Denied: You are not an admin.");
+      if (res.data.success) {
+        // Support both old and new backend responses
+        const token = res.data.token || res.data.accessToken;
+
+        if (token) {
+          localStorage.setItem("adminToken", token);
+        }
+
+        if (res.data.refreshToken) {
+          localStorage.setItem("refreshToken", res.data.refreshToken);
+        }
+
+        setIsLoggedIn(true);
+      } else {
+        alert("Login failed.");
+      }
+    } catch (err) {
+      console.error("Login failed", err);
+      alert(err.response?.data?.message || "Authentication failed");
     }
-  } catch (err) {
-    console.error("Login failed", err);
-    alert(err.response?.data?.message || "Authentication failed");
-  }
-};
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    setIsAdmin(false);
+    localStorage.removeItem("refreshToken");
+    setIsLoggedIn(false);
   };
 
   if (loading)
@@ -75,7 +85,7 @@ const handleLoginSuccess = async (googleResponse) => {
           <Route
             path="/"
             element={
-              isAdmin ? (
+              isLoggedIn ? (
                 <Dashboard onLogout={handleLogout} />
               ) : (
                 <Login onLoginSuccess={handleLoginSuccess} />
