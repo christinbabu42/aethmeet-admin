@@ -39,8 +39,9 @@ const handleLoginSuccess = async (googleResponse) => {
       }
     );
 
-    if (res.data.isAdmin && res.data.token) {
-      localStorage.setItem("adminToken", res.data.token);
+    if (res.data.isAdmin && res.data.accessToken) {
+      localStorage.setItem("adminToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
       setIsAdmin(true);
     } else {
       alert("Access Denied: You are not an admin.");

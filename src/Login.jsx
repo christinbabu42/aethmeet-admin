@@ -147,12 +147,29 @@ function LoginContent({ onLoginSuccess }) {
           >
             <p className="text-sm font-bold text-white uppercase tracking-widest mb-6">Experience Aeth-Meet on your phone</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center gap-3 px-8 py-4 bg-white text-[#0F172A] rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
-                <span className="font-bold text-lg">App Store</span>
-              </button>
-              <button className="flex items-center gap-3 px-8 py-4 bg-white text-[#0F172A] rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
+              {/* App Store (Labeled Coming Soon for Reviewers) */}
+              {/* <button className="flex items-center gap-3 px-8 py-4 bg-white/10 text-gray-400 rounded-2xl cursor-default transition-all shadow-lg border border-white/5">
+                <span className="font-bold text-lg">App Store (Coming Soon)</span>
+              </button> */}
+
+              {/* Real Google Play Link */}
+              <a 
+                href="https://play.google.com/store/apps/details?id=com.aeth.videocallapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-8 py-4 bg-white text-[#0F172A] rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 active:scale-95 shadow-lg"
+              >
                 <span className="font-bold text-lg">Google Play</span>
-              </button>
+              </a>
+            </div>
+
+            {/* Compliance Section (Crucial for Payment Approval) */}
+            <div className="mt-8 pt-6 border-t border-white/10 w-full">
+               <p className="text-xs text-gray-500 leading-relaxed max-w-lg mx-auto">
+                Aeth-Meet offers virtual 'Aeth Coins' as digital items for premium video calling and gifting. 
+                Coins have no cash value, are non-refundable after use, and are consumed exclusively 
+                within the app. Delivery is instant via Google Play Billing.
+              </p>
             </div>
           </div>
         </div>
@@ -165,8 +182,6 @@ function LoginContent({ onLoginSuccess }) {
         <a href="/community-guidelines" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Community Guidelines</a>
         <a href="/moderation-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Moderation Policy</a>
         <a href="/refund-policy" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Refund Policy</a>
-        
-          {/* ✅ ADD THIS */}
         <a href="/delete-account" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">Delete Account</a>
 
         <p className="text-xs text-gray-600 w-full text-center mt-4">
