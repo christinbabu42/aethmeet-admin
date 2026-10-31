@@ -85,12 +85,14 @@ const VideoCallAdmin = () => {
       const id = s.hostId?._id;
       if (id) {
         if (!hosts[id]) {
-          hosts[id] = { 
-            name: s.hostId.name, 
-            profile: s.hostId.profilePic, 
-            count: 0, 
-            totalTime: 0 
-          };
+hosts[id] = {
+  name: s.hostId.name,
+  email: s.hostId.email,
+  publicId: s.hostId.publicId,
+  profile: s.hostId.profilePic,
+  count: 0,
+  totalTime: 0
+};
         }
         hosts[id].count += 1;
         const end = s.endedAt ? new Date(s.endedAt) : now;
@@ -175,8 +177,21 @@ const VideoCallAdmin = () => {
               <div style={styles.hostRow}>
                 <img src={stream.hostId?.profilePic} style={styles.avatar} alt="host" />
                 <div style={{ flex: 1 }}>
-                  <p style={styles.hostName}>{stream.hostId?.name || "Deleted User"}</p>
-                  <p style={styles.streamTitle}>{stream.title || "Untitled Stream"}</p>
+<p style={styles.hostName}>
+  {stream.hostId?.name || "Deleted User"}
+</p>
+
+<p style={styles.hostDetails}>
+  Email: {stream.hostId?.email || "Not available"}
+</p>
+
+<p style={styles.hostDetails}>
+  App ID: {stream.hostId?.publicId || "Not available"}
+</p>
+
+<p style={styles.streamTitle}>
+  {stream.title || "Untitled Stream"}
+</p>
                 </div>
               </div>
 
@@ -233,8 +248,21 @@ const VideoCallAdmin = () => {
                 <div key={i} style={styles.hostListItem}>
                   <img src={h.profile} style={styles.miniAvatar} />
                   <div style={{flex:1}}>
-                    <p style={{margin:0, fontWeight:'bold'}}>{h.name}</p>
-                    <p style={{margin:0, fontSize:'12px', color:'#666'}}>{h.count} streams this period</p>
+<p style={{margin:0, fontWeight:'bold'}}>
+  {h.name}
+</p>
+
+<p style={{margin:0, fontSize:'12px', color:'#64748b'}}>
+  Email: {h.email || "Not available"}
+</p>
+
+<p style={{margin:0, fontSize:'12px', color:'#64748b'}}>
+  App ID: {h.publicId || "Not available"}
+</p>
+
+<p style={{margin:0, fontSize:'12px', color:'#666'}}>
+  {h.count} streams this period
+</p>
                   </div>
                   <div style={{textAlign:'right'}}>
                     <p style={{margin:0, fontSize:'13px', fontWeight:'bold'}}>Total Time</p>
@@ -292,7 +320,8 @@ const styles = {
   modalBody: { overflowY:'auto', paddingTop:'15px' },
   hostListItem: { display:'flex', alignItems:'center', padding:'10px', borderBottom:'1px solid #f9f9f9', gap:'15px' },
   miniAvatar: { width:'40px', height:'40px', borderRadius:'50%' },
-  closeBtn: { background:'none', border:'none', cursor:'pointer' }
+  closeBtn: { background:'none', border:'none', cursor:'pointer' },
+  hostDetails: {fontSize: "11px",color: "#64748b",margin: "3px 0",wordBreak: "break-word"},
 };
 
 export default VideoCallAdmin;
