@@ -15,6 +15,7 @@ import Revenue from './components/Dashboard/Revenue';
 import Reports from './components/Dashboard/Reports';
 // ✅ Import Video Call Management
 import VideoCall from './components/Dashboard/video-call';
+import ConcurrentUsers from "./components/Dashboard/ConcurrentUsers";
 
 export default function Dashboard({ onLogout }) {
   const [activeTab, setActiveTab] = useState('Overview');
@@ -36,6 +37,7 @@ export default function Dashboard({ onLogout }) {
     { id: 'Host Management', icon: '💃' },
     { id: 'Call Management', icon: '📞' },
     { id: 'Video Call Management', icon: '🎥' }, // ✅ Added to menu
+    { id: 'Concurrent Users', icon: '👥' }, // ✅ Added to menu
     { id: 'Wallet & Transactions', icon: '💰' },
     { id: 'Withdrawals', icon: '🏦' },
     { id: 'Gifts Management', icon: '🎁' },
@@ -53,6 +55,7 @@ export default function Dashboard({ onLogout }) {
       case 'Host Management': return <HostManagement />;
       case 'Call Management': return <CallManagement />;
       case 'Video Call Management': return <VideoCall />; // ✅ Added to render logic
+      case 'Concurrent Users': return <ConcurrentUsers />; // ✅ Added to render logic
       case 'Wallet & Transactions': return <WalletTransactions />;
       case 'Withdrawals': return <Withdrawals />;
       case 'Gifts Management': return <GiftsManagement />;
