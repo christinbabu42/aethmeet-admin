@@ -14,7 +14,7 @@ import {
 const Revenue = () => {
   const [rawData, setRawData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [timeRange, setTimeRange] = useState("all"); // all, today, 2days, 1week, 1month, 6month, 1year, custom
+  const [timeRange, setTimeRange] = useState("1month"); // all, today, 2days, 1week, 1month, 6month, 1year, custom
   const [customDate, setCustomDate] = useState({ start: "", end: "" });
 
   useEffect(() => {

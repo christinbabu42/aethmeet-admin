@@ -130,9 +130,9 @@ export default function Overview() {
 
           {/* Bottom Row: Financial Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn delay-100">
-            <Card title="Period Revenue" value={formatCurrency(stats?.todayRevenue)} color="bg-gradient-to-br from-yellow-400 to-yellow-600" icon="💰" />
-            <Card title="Total Revenue" value={formatCurrency(stats?.totalRevenue)} color="bg-gradient-to-br from-orange-500 to-orange-700" icon="📈" />
-            <Card title="Net Commission" value={formatCurrency(stats?.commission)} color="bg-gradient-to-br from-indigo-500 to-indigo-700" icon="🏦" />
+            <Card title="Period Revenue" value={formatCurrency(stats?.periodRevenue)} color="bg-gradient-to-br from-yellow-400 to-yellow-600" icon="💰" />
+            <Card title="All-Time Call Revenue" value={formatCurrency(stats?.totalRevenue)} color="bg-gradient-to-br from-orange-500 to-orange-700" icon="📈" />
+<Card title="Period Call Commission" value={formatCurrency(stats?.commission)} color="bg-gradient-to-br from-indigo-500 to-indigo-700" icon="🏦" />
             <Card title="Pending Payouts" value={formatCurrency(stats?.pendingPayouts)} color="bg-gradient-to-br from-red-500 to-red-700" icon="⌛" />
           </div>
         </>

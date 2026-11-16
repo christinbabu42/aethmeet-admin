@@ -135,41 +135,40 @@ export default function App() {
     );
   }
 
-  return (
-    <Router>
-      <div className="min-h-screen">
-        <Routes>
-          {/* Main App Route */}
-          <Route
-            path="/"
-            element={
-              isAdmin ? (
-                <Dashboard onLogout={handleLogout} />
-              ) : (
-                <Login onLoginSuccess={handleLoginSuccess} />
-              )
-            }
-          />
+return (
+  <Router>
+    <div className="min-h-screen">
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            isAdmin ? (
+              <Dashboard onLogout={handleLogout} />
+            ) : (
+              <Login onLoginSuccess={handleLoginSuccess} />
+            )
+          }
+        />
 
-          {/* Legal Pages Routes */}
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsConditions />} />
-          <Route
-            path="/community-guidelines"
-            element={<CommunityGuidelines />}
-          />
-          <Route
-            path="/moderation-policy"
-            element={<ModerationPolicy />}
-          />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/support" element={<Support />} />
-          <Route
-            path="/delete-account"
-            element={<DeleteAccount />}
-          />
-        </Routes>
-      </div>
-    </Router>
-  );
+        {/* Legal Pages Routes */}
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route
+          path="/community-guidelines"
+          element={<CommunityGuidelines />}
+        />
+        <Route
+          path="/moderation-policy"
+          element={<ModerationPolicy />}
+        />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/support" element={<Support />} />
+        <Route
+          path="/delete-account"
+          element={<DeleteAccount />}
+        />
+      </Routes>
+    </div>
+  </Router>
+);
 }

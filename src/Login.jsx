@@ -54,7 +54,7 @@ function LoginContent({ onLoginSuccess }) {
           className="flex items-center gap-2 cursor-pointer" 
           onClick={scrollToDownload}
         >
-          <img src="/logo1.png" alt="Aeth-Meet Logo" className="h-8 w-auto" />
+          <img src="/logo.png" alt="Aeth-Meet Logo" className="h-8 w-auto" />
           <span className="text-xl font-bold tracking-tight text-white uppercase">Aeth-Meet</span>
         </div>
         
@@ -113,7 +113,7 @@ function LoginContent({ onLoginSuccess }) {
           <div className="relative mb-8">
             <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-pink-500/40 via-purple-500/30 to-pink-500/40"></div>
             <img 
-              src="/logo1.png" 
+              src="/logo.png" 
               alt="Aeth-Meet Logo" 
               className="relative h-24 w-24 object-contain opacity-0 animate-[fadeIn_2s_ease-in-out_forwards]"
             />
