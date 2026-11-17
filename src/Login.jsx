@@ -69,7 +69,7 @@ function LoginContent({ onLoginSuccess }) {
             <img src="/logo.png" alt="Aeth-Meet Logo" className="h-7 w-auto" />
           </div>
           <span className="text-xl font-extrabold tracking-widest uppercase bg-gradient-to-r from-[#996515] via-[#C5A059] to-[#8A6D3B] bg-clip-text text-transparent">
-            Helloza
+            AethMeet
           </span>
         </div>
 

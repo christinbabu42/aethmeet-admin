@@ -7,12 +7,12 @@ const DEFAULT_SETTINGS = {
   minimumBuildNumber: 43,
   latestVersion: "1.0.5",
   updateMessage:
-    "A new version of Helloza is available. Please update to continue.",
+    "A new version of AethMeet is available. Please update to continue.",
   playStoreUrl:
     "https://play.google.com/store/apps/details?id=com.aeth.videocallapp",
   maintenanceMode: false,
   maintenanceMessage:
-    "Helloza is currently undergoing maintenance. Please try again later.",
+    "AethMeet is currently undergoing maintenance. Please try again later.",
   maintenanceEndTime: "",
 };
 
@@ -144,7 +144,7 @@ const restrictionsBeingEnabled =
 
     if (restrictionsBeingEnabled) {
       const confirmed = window.confirm(
-        "You are enabling an app restriction. This may prevent users from accessing Helloza. Continue?"
+        "You are enabling an app restriction. This may prevent users from accessing AethMeet. Continue?"
       );
 
       if (!confirmed) return;
@@ -215,7 +215,7 @@ const restrictionsBeingEnabled =
             App Control
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Manage Helloza updates and server maintenance.
+            Manage AethMeet updates and server maintenance.
           </p>
         </div>
 
@@ -387,7 +387,7 @@ const restrictionsBeingEnabled =
             </h2>
 
             <p className="text-sm text-slate-500 mt-1">
-              Temporarily restrict access to Helloza.
+              Temporarily restrict access to AethMeet.
             </p>
           </div>
 
